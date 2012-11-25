@@ -16,14 +16,7 @@ Suggests:
     testthat,
     roxygen2
 Depends:
-    RCurl,
-    rjson,
-    survival
+    healthvis
 Collate:
-    'AllClasses.R'
-    'healthvisMethods.R'
-    'accuracyTableVis.R'
-    'survivalVis.R'
-    'listHealthVis.R'
     'zzz.R'
     'server.R'
