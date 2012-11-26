@@ -1,4 +1,4 @@
-Package: healthvis
+Package: healthvisDevel
 Maintainer: Jeffrey T. Leek
     <jtleek@gmail.com>
 Author: Jeffrey T. Leek <jtleek@gmail.com>, Prasad Patil<prpatil@jhsph.edu>
@@ -17,6 +17,8 @@ Suggests:
     roxygen2
 Depends:
     healthvis
+SystemRequirements:
+    python
 Collate:
     'zzz.R'
     'server.R'

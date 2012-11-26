@@ -1,5 +1,5 @@
-from flaskext import wtf
-from flaskext.wtf import validators
+import flask_wtf as wtf
+from flask_wtf import validators
 import json
 import logging
 
