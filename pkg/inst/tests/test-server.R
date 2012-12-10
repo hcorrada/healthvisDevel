@@ -1,7 +1,7 @@
 inst_path="."
-
+python_binary="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7"
 test_that("server setup works", {
-  healthvisDevel::setup(path=inst_path)
+  healthvisDevel::setup(path=inst_path, python_binary=python_binary)
   expect_that(file.exists(file.path(inst_path,"healthvisServer")), is_true())
 })
 

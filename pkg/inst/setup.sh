@@ -2,10 +2,17 @@
 
 path=$1
 rinstdir=$2
+pybin=$3
+
 pyinstdir="healthvisServer"
 
 # check python
-command -v python >/dev/null 2>&1 || { echo "python not found" >&2; exit 1; }
+command -v  $pybin >/dev/null 2>&1 || { echo "python not found" >&2; exit 1; }
+
+# check python version
+pyversion=$(${pybin} -c 'import sys; print sys.version[:3]')
+[ $pyversion != '2.7' ] && { echo "python version not 2.7" >&2; exit 1; }
+
 
 # create directory if it doesn't exist
 if [ -d $path ] 
@@ -32,7 +39,7 @@ fi
 # check if the virtual environment is ther already
 if [ ! -f ./$pyinstdir/bin/pip ]; then
 	# make the virtual environment
-	python virtualenv.py $pyinstdir
+	$pybin virtualenv.py $pyinstdir
 fi
 
 # check pip works

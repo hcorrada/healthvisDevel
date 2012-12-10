@@ -3,6 +3,7 @@ inst_path="."
 test_that("survival works on gae", {
   if (!healthvisDevel::isServerRunning()) {
     healthvisDevel::startServer(path=inst_path)
+    Sys.sleep(5)
   }
   
   url=healthvisDevel::getURL()
