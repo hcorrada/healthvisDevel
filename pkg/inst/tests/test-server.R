@@ -1,22 +1,28 @@
-path=tempdir()
+inst_path="."
 
 test_that("server setup works", {
-  healthvisDevel::setup(path=path)
-  expect_that(file.exists(file.path(path,"healthvisServer")), is_true())
+  healthvisDevel::setup(path=inst_path)
+  expect_that(file.exists(file.path(inst_path,"healthvisServer")), is_true())
 })
 
 test_that("startServer works", {
-  url=healthvisDevel::startServer(path=path)
+  url=healthvisDevel::startServer(path=inst_path)
   Sys.sleep(5)
-  browseURL(url)
-  expect_that(file.exists(file.path(path,"healthvisServer/.serverpid")), is_true())
+  expect_that(file.exists(file.path(inst_path,"healthvisServer/.serverpid")), is_true())
 })
 
 test_that("isServerRunning works", {
   expect_that(healthvisDevel::isServerRunning(), is_true())
 })
 
+test_that("getURL works", {
+  url=healthvisDevel::getURL()
+  browseURL(url)
+  expect_that(is.character(RCurl::getURLContent(url)), is_true())
+})
+
 test_that("stopServer works", {
-  healthvisDevel::stopServer(path=path)
-  expect_that(file.exists(file.path(path,"healthvisServer/.serverpid")), is_false())
+  healthvisDevel::stopServer()
+  expect_that(file.exists(file.path(inst_path,"healthvisServer/.serverpid")), is_false())
+  expect_that(healthvisDevel::isServerRunning(), is_false())
 })

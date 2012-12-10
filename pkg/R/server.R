@@ -24,8 +24,12 @@ startServer <- function(path=".", verbose=FALSE) {
     res=system(cmd, wait=TRUE)
     if (res == "0") break
   }
+  if (res != "0")
+    stop("Error starting server")
+  
   url=sprintf("http://localhost:%d", port)
-  assign(".localURL", url, env=.params)
+  assign(".localURL", url, env=healthvisDevel:::.params)
+  assign(".serverPath", path, env=healthvisDevel:::.params)
   return(url)
 }
 
@@ -33,7 +37,8 @@ startServer <- function(path=".", verbose=FALSE) {
 #' 
 #' @param path path to installation directory
 #' @export
-stopServer <- function(path=".", verbose=FALSE) {
+stopServer <- function(verbose=FALSE) {
+  path=get(".serverPath", env=healthvisDevel:::.params)
   cmd=sprintf("sh %s/healthvisServer/bin/stopserver.sh %s", path, path)
   invisible(system(cmd, ignore.stdout=TRUE, ignore.stderr=TRUE))
 }
@@ -42,7 +47,14 @@ stopServer <- function(path=".", verbose=FALSE) {
 #' 
 #' @export
 isServerRunning <- function() {
-  url=get(".localURL", env=.params)
+  url=get(".localURL", env=healthvisDevel:::.params)
   txt=try(RCurl::getURLContent(url))
   return(!inherits(txt,"try-error"))
+}
+
+#' get the local server url
+#' 
+#' @export
+getURL <- function() {
+  get(".localURL", env=.params)
 }
