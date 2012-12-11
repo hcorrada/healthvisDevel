@@ -1,7 +1,7 @@
 #' setup the python evironment for development
 #' 
 #' @param path where to install the devel files, directory is created if it doesn't exist
-#' @exprt
+#' @export
 setup <- function(path=".", python_binary="python") {
   script_path=system.file("inst", package="healthvisDevel")
   cmd=sprintf("%s/setup.sh %s %s %s", script_path, path, script_path, python_binary)

@@ -1,10 +1,9 @@
 Package: healthvisDevel
-Maintainer: Jeffrey T. Leek
-    <jtleek@gmail.com>
-Author: Jeffrey T. Leek <jtleek@gmail.com>, Prasad Patil<prpatil@jhsph.edu>
-Version: 1.0
-License: GPL-3
-Title: Interactive Health Visualizations
+Maintainer: Hector Corrada Bravo    <hcorrada@gmail.com>
+Author: Hector Corrada Bravo <hcorrada@gmail.com>, Jeffrey T. Leek <jtleek@gmail.com>, Prasad Patil<prpatil@jhsph.edu>
+Version: 0.9
+License: Artistic-2.0
+Title: Interactive Health Visualization Development
 Description: The healthvis package is designed to make it easy to create and
     publish interactive visualizations, with a focus on health visualizations.
     The functions in the healthvis package create HTML pages with embedded
@@ -17,8 +16,7 @@ Suggests:
     roxygen2
 Depends:
     healthvis
-SystemRequirements:
-    python
+SystemRequirements: python
 Collate:
     'zzz.R'
     'server.R'
