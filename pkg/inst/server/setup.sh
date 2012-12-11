@@ -62,7 +62,7 @@ fi
 
 # test flask
 echo "Testing installation"
-./$pyinstd	ir/bin/python $rinstdir/test_setup.py || { echo "error starting flask" >&2; exit 1; }
+./$pyinstdir/bin/python $rinstdir/test_setup.py || { echo "error starting flask" >&2; exit 1; }
 
 # copy files over 
 echo "Copying healthvis files"

@@ -2,8 +2,8 @@
 #' 
 #' @param path where to install the devel files, directory is created if it doesn't exist
 #' @export
-setup <- function(path=".", python_binary="python") {
-  script_path=system.file("inst", package="healthvisDevel")
+setup <- function(path=".", python_binary="python", testing=FALSE) {
+  script_path = ifelse(!testing,system.file("server", package="healthvisDevel"),system.file("inst","server", package="healthvisDevel"))
   cmd=sprintf("%s/setup.sh %s %s %s", script_path, path, script_path, python_binary)
   res=system(cmd,wait=TRUE)
   if (res>0) 
