@@ -15,8 +15,17 @@ y = runif(n,max=yRange)
 z = runif(n,max=zRange)
 class = factor(sample(c("A","B","C"),n,replace=TRUE))
 
-scatterPlotVis=function(x,y,z,class,plot.title="My scatterplot", url=healthvisDevel::getURL(), plot=TRUE) {
-  d3Params=list(x=x,y=y,z=z,class=class)
+scatterVis=function(x,y,z,class,plot.title="My scatterplot", url=healthvisDevel::getURL(), plot=TRUE) {
+  d3Params=list(x=x,
+                y=y,
+                z=z,
+                class=class,
+                colors=RColorBrewer::brewer.pal(nlevels(class),"Dark2"),
+                xRange=xRange,
+                yRange=yRange,
+                zRange=zRange,
+                levels=levels(class))
+  
   varType=c("continuous", "factor")
   vars=list(size=c(0,max(z)),
             class=levels(class))
@@ -36,4 +45,5 @@ scatterPlotVis=function(x,y,z,class,plot.title="My scatterplot", url=healthvisDe
 }
 
 obj=scatterPlotVis(x,y,z,class,plot=FALSE)
+
 #healthvisDevel::stopServer()
