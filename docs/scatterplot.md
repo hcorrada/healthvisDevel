@@ -110,13 +110,14 @@ CSS and JavaScript are kept separately in the `static` directory. First we will 
 ##The d3 side
 
 The healthvis framework uses a very simple API. Visualizations need to implement three functions: 
-[`init`]: sets up data and plot elements  
-[`visualize`]: renders the plot  
-[`update`]: updates the plot in response to changes to form controls  
+
+init: sets up data and plot elements  
+visualize: renders the plot  
+update: updates the plot in response to changes to form controls  
 
 Finally, these functions are registered into the `healthvis` framework. The general structure will look like this:
 
-```javascript
+```js
 function HealthvisScatterplot() {
    this.init = function(elementId, d3Params) {}
    this.visualize = function() {}
@@ -129,7 +130,7 @@ healthvis.register(new HealthvisScatterplot());
 
 The purpose of the `init` function is to select the document element holding the plot and to setup data and plot elements. The first argument is the id of the `div` in the page where the plot will be shown. This can be passed to a `d3.select` call to setup the plot. The second argument is a JavaScript array resulting from parsing the JSON string that was created from the `d3Params` created in R.
 
-```javascript
+```js
     this.init = function(elementId, d3Params) {
         var w = 700;
         var h = 400;
@@ -202,7 +203,7 @@ The purpose of the `init` function is to select the document element holding the
 
 The actual plot is straightfoward now. We just add circles for each point in the scatterplot.
 
-```javascript
+```js
 this.visualize = function() {
         var xScale = this.xScale,
             yScale = this.yScale,
@@ -231,7 +232,7 @@ this.visualize = function() {
 
 The last thing to do is to update the plot in response to changes in the form controls. We'll do this by setting the visibility argument of the points depending on their size and class.
 
-```javascript
+```js
     this.update = function(formData) {
         var minSize=null,
             theClass=null;
